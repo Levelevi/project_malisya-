@@ -1,0 +1,1004 @@
+/* Reset and Base Styles */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    --brand-gradient: linear-gradient(45deg, #6b7a94, #a8b8d4);
+    --accent-gradient: linear-gradient(90deg, #6b7a94, #8492a8);
+    --text-primary: #2c3e50;
+    --text-secondary: #555;
+    --text-muted: #666;
+    --white-alpha-10: rgba(255, 255, 255, 0.1);
+    --white-alpha-20: rgba(255, 255, 255, 0.2);
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.15);
+    --shadow-heavy: 0 10px 28px rgba(0, 0, 0, 0.12);
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+    --font-family: 'Arial', sans-serif;
+    --font-family-jp: "Noto Sans JP", sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--primary-gradient);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+    color: var(--text-primary);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Ensure seamless loop */
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-20px) rotate(90deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(180deg);
+    }
+    75% {
+        transform: translateY(-25px) rotate(270deg);
+    }
+}
+
+/* Focus Management */
+*:focus-visible {
+    outline: 2px solid #6b7a94;
+    outline-offset: 2px;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #6b7a94;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #5a6c85;
+}
+
+/* =========================================== */
+/* Mobile First - Base Styles (320px+) */
+/* =========================================== */
+
+/* Promotional Banner */
+.promo-banner {
+    background: #51698F;
+    color: white;
+    text-align: center;
+    padding: 0.5rem 0; /* Adjusted to rem */
+    font-size: 0.7rem; /* Adjusted to rem */
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+/* Hero Section (wrapper for header + hero content) */
+.hero-section {
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-image: url('../assets/products/Product_01.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    overflow: hidden;
+}
+
+/* Header inside Hero */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem; /* Adjusted to rem */
+    padding: 1rem 1.25rem; /* Adjusted to rem */
+    width: 100%;
+    z-index: 10;
+}
+
+/* Logo */
+.logo img {
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.05);
+}
+
+/* Nav */
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem; /* Adjusted to rem */
+}
+
+.nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: 400;
+    font-size: 0.8rem; /* Adjusted to rem */
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 0.4rem 0.6rem; /* Adjusted to rem */
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+}
+
+.nav a:hover,
+.nav a:focus-visible {
+    color: #d1d5db;
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px); /* Subtle lift */
+}
+
+/* Header Icons */
+.header-icons {
+    display: flex;
+    gap: 0.6rem; /* Adjusted to rem */
+}
+
+.icon {
+    width: 1.25rem; /* Adjusted to rem */
+    height: 1.25rem; /* Adjusted to rem */
+    cursor: pointer;
+    opacity: 0.85;
+    transition: var(--transition);
+    stroke: white;
+}
+
+.icon:hover,
+.icon:focus-visible {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Hero Content */
+.hero-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2.5rem 1.25rem; /* Adjusted to rem */
+    z-index: 5;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    animation: fadeInUp 1s ease-out;
+}
+
+/* Carousel Section */
+.poster-carousel {
+    position: relative;
+    overflow: hidden;
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 2rem; /* Adjusted for mobile */
+    width: max-content;
+    animation: scroll 60s linear infinite;
+    will-change: transform;
+    padding-bottom: 1rem; /* Space for caption */
+}
+
+.poster {
+    flex: 0 0 auto;
+    width: 180px; /* Base width */
+    height: 250px; /* Base height */
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+    transition: var(--transition);
+}
+
+.poster:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-caption {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    font-family: var(--font-family-jp);
+    font-weight: 500;
+    text-align: center;
+}
+
+/* ================= Product Showcase Section ================= */
+.product-showcase {
+    padding: 3rem 1rem; /* Adjusted to rem */
+    background: #f9f9f9;
+    font-family: var(--font-family-jp);
+    text-align: center;
+}
+
+.showcase-container {
+    max-width: 1800px;
+    margin: 0 auto;
+}
+
+.showcase-title {
+    font-size: 2rem; /* Adjusted to rem */
+    font-weight: 800;
+    margin-bottom: 0.8rem;
+    color: var(--text-primary);
+}
+
+.showcase-subtitle {
+    font-size: 1rem; /* Adjusted to rem */
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem; /* Adjusted to rem */
+}
+
+/* Product List using Grid for better responsiveness */
+.showcase-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Flexible columns */
+    justify-items: center; /* Center grid items */
+    gap: 2rem; /* Adjusted to rem */
+    padding: 0 1rem;
+}
+
+.showcase-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align text left within item */
+    width: 100%;
+    max-width: 350px; /* Max width for individual items */
+}
+
+.showcase-image {
+    width: 100%;
+    height: 220px; /* Fixed height for consistency, object-fit handles scaling */
+    border-radius: var(--border-radius);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.showcase-image:hover {
+    transform: scale(1.03); /* Slightly less aggressive hover */
+}
+
+.showcase-name {
+    font-size: 1.3rem; /* Adjusted to rem */
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0.5rem 0 0.25rem 0;
+    text-align: left;
+}
+
+.showcase-description {
+    font-size: 0.95rem; /* Adjusted to rem */
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-top: 0.25rem;
+    text-align: left;
+}
+
+/* Fit Guide Section */
+.fit-guide-section {
+    padding: 3rem 1rem; /* Adjusted to rem */
+    font-family: var(--font-family-jp);
+    text-align: center;
+    background-color: white;
+}
+
+.main-title {
+    font-size: 2rem; /* Adjusted to rem */
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.subtitle {
+    font-size: 1rem; /* Adjusted to rem */
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.fit-guide-images {
+    position: relative;
+    max-width: 900px; /* Slightly smaller max-width */
+    margin: 0 auto;
+}
+
+.fit-guide-images img {
+    width: 100%;
+    max-width: 100%; /* Ensure images don't overflow */
+    display: none;
+    border-radius: var(--border-radius);
+    transition: opacity 0.5s ease;
+}
+
+.fit-guide-images img.active {
+    display: block;
+    opacity: 1;
+}
+
+.fit-guide-nav {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem; /* Adjusted to rem */
+    margin-top: 1.5rem;
+}
+
+.guide-btn {
+    width: 12px; /* Adjusted size */
+    height: 12px; /* Adjusted size */
+    border-radius: 50%;
+    background: #ccc;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.guide-btn:hover,
+.guide-btn:focus-visible {
+    background: #999;
+    transform: scale(1.1);
+    outline: none;
+}
+
+.guide-btn.active {
+    background: var(--text-primary);
+}
+
+/* Experts Section */
+.experts-section {
+    padding: 4rem 1rem; /* Adjusted to rem */
+    font-family: var(--font-family-jp);
+    background: #F5F5F7;
+}
+
+.experts-section .container {
+    display: grid;
+    grid-template-columns: 1fr; /* Default: Stacked on mobile */
+    gap: 2rem; /* Adjusted to rem */
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+/* Heading Side */
+.experts-heading {
+    text-align: center; /* Center on mobile */
+    padding: 0;
+}
+
+.experts-heading .title {
+    font-size: 1.8rem; /* Adjusted to rem */
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.experts-heading .subtitle {
+    font-size: 1rem; /* Adjusted to rem */
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+}
+
+.experts-heading .description {
+    font-size: 0.9rem; /* Adjusted to rem */
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 400px; /* Limit width for readability */
+    margin: 0 auto; /* Center description */
+}
+
+/* Experts Grid */
+.experts-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Flexible columns */
+    gap: 1.5rem; /* Adjusted to rem */
+    justify-items: center;
+}
+
+/* Expert Card */
+.expert-card {
+    background: #fff;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    text-align: center;
+    box-shadow: var(--shadow-light);
+    transition: var(--transition);
+    max-width: 280px; /* Max width for individual cards */
+    width: 100%;
+}
+
+.expert-card:hover {
+    transform: scale(1.03);
+    box-shadow: var(--shadow-medium);
+}
+
+.expert-card img {
+    width: 100%;
+    max-width: 200px; /* Max width for image within card */
+    height: 280px; /* Fixed height for consistency */
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border-radius: var(--border-radius);
+}
+
+.expert-name {
+    font-size: 1.05rem; /* Adjusted to rem */
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.expert-info {
+    font-size: 0.9rem; /* Adjusted to rem */
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* Footer */
+.site-footer {
+    background: #51698F;
+    color: #eee;
+    padding: 3rem 1rem; /* Adjusted to rem */
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column; /* Stacked for mobile */
+    gap: 2rem; /* Adjusted to rem */
+    align-items: center; /* Center items on mobile */
+}
+
+/* Social Media */
+.footer-social {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px; /* Adjusted size */
+    height: 38px; /* Adjusted size */
+    background: #555;
+    color: #fff;
+    border-radius: 50%;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.social-icon:hover {
+    background: #ff9900;
+    transform: scale(1.1);
+}
+
+/* Product and Links */
+.footer-products,
+.footer-links,
+.footer-guidelines {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+    width: 100%; /* Take full width on mobile */
+}
+
+.footer-products h4,
+.footer-links h4,
+.footer-guidelines h4 {
+    font-size: 1.1rem; /* Adjusted to rem */
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.footer-products ul,
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-products li,
+.footer-links li {
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem; /* Adjusted to rem */
+}
+
+.footer-guidelines p {
+    font-size: 0.85rem; /* Adjusted to rem */
+    line-height: 1.5;
+}
+
+/* Copyright */
+.footer-copy {
+    font-size: 0.8rem; /* Adjusted to rem */
+    text-align: center;
+    color: #aaa;
+    margin-top: 1.5rem;
+    border-top: 1px solid #444;
+    padding-top: 1rem;
+    width: 100%;
+}
+
+/* =========================================== */
+/* Media Queries - Responsive Overrides */
+/* =========================================== */
+
+/* Small to Medium Tablets (e.g., iPad Mini Portrait - 576px and up) */
+@media (min-width: 576px) {
+    .promo-banner {
+        font-size: 0.75rem;
+    }
+
+    .header {
+        padding: 1rem 1.5rem;
+    }
+
+    .nav a {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.8rem;
+    }
+
+    .icon {
+        width: 1.4rem;
+        height: 1.4rem;
+    }
+
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+
+    .poster {
+        width: 220px;
+        height: 300px;
+    }
+
+    .carousel-caption {
+        font-size: 0.95rem;
+    }
+
+    .showcase-title {
+        font-size: 2.5rem;
+    }
+
+    .showcase-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .showcase-item {
+        max-width: 380px;
+    }
+
+    .showcase-image {
+        height: 250px;
+    }
+
+    .showcase-name {
+        font-size: 1.5rem;
+    }
+
+    .showcase-description {
+        font-size: 1rem;
+    }
+
+    .main-title {
+        font-size: 2.4rem;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+    }
+
+    .guide-btn {
+        width: 14px;
+        height: 14px;
+    }
+
+    .experts-heading .title {
+        font-size: 2.2rem;
+    }
+    .experts-heading .subtitle {
+        font-size: 1.1rem;
+    }
+    .experts-heading .description {
+        font-size: 1rem;
+    }
+    .expert-card img {
+        height: 300px;
+    }
+
+    .footer-container {
+        flex-direction: row; /* Horizontal layout for footer */
+        flex-wrap: wrap; /* Allow wrapping */
+        justify-content: space-between;
+        align-items: flex-start;
+        text-align: left;
+    }
+    .footer-products, .footer-links, .footer-guidelines, .footer-social {
+        width: auto; /* Allow items to size based on content */
+        flex: 1; /* Distribute space */
+        text-align: left;
+    }
+    .footer-social {
+        justify-content: flex-start;
+    }
+    .footer-copy {
+        flex-basis: 100%; /* Take full width */
+        margin-top: 2rem;
+        text-align: center;
+    }
+}
+
+/* Tablets Landscape & Small Laptops (e.g., iPad Pro, Small Laptops - 768px and up) */
+@media (min-width: 768px) {
+    .header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.25rem 2.5rem;
+        gap: 0;
+    }
+
+    .logo img {
+        max-width: 200px;
+    }
+
+    .nav {
+        flex: 1; /* Allows nav to take available space */
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: nowrap; /* Prevent wrapping in desktop nav */
+    }
+
+    .nav a {
+        font-size: 0.95rem;
+        padding: 0; /* Remove padding for desktop style */
+        background: none;
+        backdrop-filter: none;
+        position: relative;
+        /* Underline effect */
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white; /* Underline color */
+            transition: width 0.3s ease;
+        }
+
+        &:hover::after {
+            width: 100%;
+        }
+        &:hover {
+             transform: none; /* Override mobile transform */
+        }
+    }
+
+    .icon {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .hero-section {
+        min-height: 65vh;
+    }
+
+    .hero-content h1 {
+        font-size: 3.8rem;
+    }
+
+    .carousel-track {
+        gap: 3rem;
+    }
+
+    .poster {
+        width: 250px;
+        height: 340px;
+    }
+
+    .showcase-list {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* More columns on wider screens */
+        gap: 2.5rem;
+    }
+
+    .showcase-item {
+        max-width: 420px;
+    }
+    .showcase-image {
+        height: 280px;
+    }
+
+    .experts-section .container {
+        grid-template-columns: 1fr 2fr; /* Heading on left, experts on right */
+        gap: 3rem;
+        align-items: center;
+    }
+
+    .experts-heading {
+        text-align: left; /* Align left on desktop */
+        padding-right: 1.5rem;
+    }
+    .experts-heading .description {
+        margin: 0; /* Remove auto margin */
+        max-width: none; /* No max-width restriction */
+    }
+
+    .experts-list {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for experts */
+        gap: 2rem;
+    }
+    .expert-card {
+        max-width: none; /* Allow grid to manage width */
+    }
+    .expert-card img {
+        height: 280px; /* Slightly adjusted height */
+    }
+}
+
+/* Larger Laptops and Desktops (e.g., 1024px and up) */
+@media (min-width: 1024px) {
+    .promo-banner {
+        font-size: 0.8rem;
+        padding: 0.6rem 0;
+    }
+    .header {
+        padding: 1.5rem 4rem;
+    }
+
+    .logo img {
+        max-width: 220px;
+    }
+
+    .nav a {
+        font-size: 1rem;
+    }
+
+    .hero-section {
+        min-height: 60vh;
+    }
+
+    .hero-content h1 {
+        font-size: 4.5rem;
+    }
+
+    .carousel-track {
+        gap: 4rem;
+        animation-duration: 50s; /* Faster scroll for more content */
+    }
+
+    .poster {
+        width: 280px;
+        height: 380px;
+    }
+
+    .showcase-title {
+        font-size: 3rem;
+    }
+
+    .showcase-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .showcase-list {
+        grid-template-columns: repeat(3, 1fr); /* Three columns for larger screens */
+        gap: 3rem;
+    }
+
+    .showcase-item {
+        max-width: 450px;
+    }
+    .showcase-image {
+        height: 320px;
+    }
+
+    .main-title {
+        font-size: 2.8rem;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .experts-heading .title {
+        font-size: 2.5rem;
+    }
+
+    .experts-list {
+        grid-template-columns: repeat(3, 1fr); /* Three columns for experts */
+    }
+}
+
+/* Extra Large Desktops (1440px and up) */
+@media (min-width: 1440px) {
+    .header {
+        padding: 1.8rem 6rem;
+    }
+
+    .logo img {
+        max-width: 250px;
+    }
+
+    .nav a {
+        font-size: 1.05rem;
+    }
+
+    .hero-section {
+        min-height: 55vh;
+    }
+
+    .hero-content h1 {
+        font-size: 5.5rem;
+    }
+
+    .carousel-track {
+        gap: 5rem;
+        animation-duration: 40s; /* Even faster */
+    }
+
+    .poster {
+        width: 320px;
+        height: 420px;
+    }
+
+    .showcase-title {
+        font-size: 3.4rem;
+    }
+
+    .showcase-subtitle {
+        font-size: 1.3rem;
+    }
+
+    .showcase-list {
+        grid-template-columns: repeat(3, minmax(350px, 1fr)); /* Explicitly size for large screens */
+        gap: 3.5rem;
+    }
+     .showcase-item {
+        max-width: 500px;
+    }
+    .showcase-image {
+        height: 350px;
+    }
+
+    .main-title {
+        font-size: 3.2rem;
+    }
+
+    .subtitle {
+        font-size: 1.3rem;
+    }
+
+    .experts-section .container {
+        grid-template-columns: 1fr 3fr; /* More space for experts grid */
+    }
+
+    .experts-heading .title {
+        font-size: 2.8rem;
+    }
+
+    .experts-list {
+        grid-template-columns: repeat(4, 1fr); /* Four columns for experts */
+        gap: 2.5rem;
+    }
+}
+
+/* Landscape orientation for very short screens (e.g., phones in landscape mode) */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero-section {
+        min-height: 100vh; /* Use full height */
+        padding: 1rem 1rem;
+    }
+
+    .header {
+        flex-direction: row;
+        flex-wrap: wrap; /* Allow wrapping of header items */
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1rem;
+    }
+
+    .nav {
+        flex-basis: 100%; /* Nav takes full width */
+        justify-content: center;
+        gap: 0.5rem;
+    }
+    .nav a {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.5rem;
+    }
+
+    .hero-content {
+        padding: 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .product-showcase, .fit-guide-section, .experts-section, .site-footer {
+        padding: 2rem 1rem; /* Reduced padding */
+    }
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .carousel-track {
+        animation: none;
+    }
+}
